@@ -96,6 +96,7 @@
 				TargetAttributes = {
 					B03D63391F6B575D00B4C3DE = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = ZZWK7JZAP8;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -262,6 +263,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ZZWK7JZAP8;
 				INFOPLIST_FILE = ScrollViewParallax/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.joshqn.ScrollViewParallax;
@@ -274,6 +276,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ZZWK7JZAP8;
 				INFOPLIST_FILE = ScrollViewParallax/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.joshqn.ScrollViewParallax;
