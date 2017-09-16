@@ -105,14 +105,16 @@ extension ViewController: UIScrollViewDelegate {
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     let pageWidth = scrollView.bounds.width
     let pageFraction = scrollView.contentOffset.x/pageWidth
-    let constantFraction = pageFraction
+    let headerConstantFraction = pageFraction * 2
+    let paragraphConstantFraction = pageFraction
     
     pageControl.currentPage = Int((round(pageFraction)))
     
     for (index, view) in views.enumerated() {
       guard let view = view as? PageView else { return }
-      let constant = pageWidth * (CGFloat(index) - constantFraction)
-      view.updateViewCenterXAnchor(with: constant)
+      let headerConstant = pageWidth * (CGFloat(index * 2) - headerConstantFraction)
+      let paragraphconstant = pageWidth * (CGFloat(index) - paragraphConstantFraction)
+      view.updateViewCenterXAnchor(headerConstant: headerConstant, paragraphConstant: paragraphconstant)
     }
   }
 }

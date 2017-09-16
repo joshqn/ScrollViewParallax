@@ -93,9 +93,9 @@ class PageView: UIView {
     ])
   }
   
-  func updateViewCenterXAnchor(with constant: CGFloat) {
-    headerCenterXAnchor = self.headerTextField.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: constant)
-    paragraphCenterXAnchor = self.paragraphTextView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: constant)
+  func updateViewCenterXAnchor(headerConstant: CGFloat, paragraphConstant: CGFloat) {
+    headerCenterXAnchor = self.headerTextField.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: headerConstant)
+    paragraphCenterXAnchor = self.paragraphTextView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: paragraphConstant)
   }
   
 }
