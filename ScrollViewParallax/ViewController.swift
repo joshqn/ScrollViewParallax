@@ -12,7 +12,7 @@ class ViewController: UIViewController {
   // Set the frames to zero because we'll be using AutoLayout to size them
   private var scrollView = UIScrollView(frame: .zero)
   private var stackView = UIStackView(frame: .zero)
-  private var views:[UIView] = []
+  var views:[UIView] = []
   var pageControl = UIPageControl()
 
   override func viewDidLoad() {
@@ -105,8 +105,15 @@ extension ViewController: UIScrollViewDelegate {
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     let pageWidth = scrollView.bounds.width
     let pageFraction = scrollView.contentOffset.x/pageWidth
+    let constantFraction = pageFraction
     
     pageControl.currentPage = Int((round(pageFraction)))
+    
+    for (index, view) in views.enumerated() {
+      guard let view = view as? PageView else { return }
+      let constant = pageWidth * (CGFloat(index) - constantFraction)
+      view.updateViewCenterXAnchor(with: constant)
+    }
   }
 }
 

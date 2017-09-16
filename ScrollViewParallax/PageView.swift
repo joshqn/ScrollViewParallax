@@ -26,6 +26,23 @@ class PageView: UIView {
     }
   }
   
+  private var headerCenterXAnchor = NSLayoutConstraint() {
+    willSet {
+      headerCenterXAnchor.isActive = false
+    }
+    didSet {
+      headerCenterXAnchor.isActive = true
+    }
+  }
+  private var paragraphCenterXAnchor = NSLayoutConstraint() {
+    willSet {
+      paragraphCenterXAnchor.isActive = false
+    }
+    didSet {
+      paragraphCenterXAnchor.isActive = true
+    }
+  }
+  
   // Designated Init method
   init(headerText: String, paragraphText: String, backgroundColor: UIColor) {
     super.init(frame: .zero)
@@ -46,11 +63,9 @@ class PageView: UIView {
   }
   
   func setup() {
-    // Basic text and view setup
     headerTextField.isUserInteractionEnabled = false
     headerTextField.textColor = .black
     headerTextField.textAlignment = .center
-    headerTextField.sizeToFit()
     
     paragraphTextView.isUserInteractionEnabled = false
     paragraphTextView.textColor = .black
@@ -59,20 +74,28 @@ class PageView: UIView {
     paragraphTextView.isScrollEnabled = false
     paragraphTextView.backgroundColor = .clear
     
-    // Configuring the textfield/view for autoLayout
     headerTextField.translatesAutoresizingMaskIntoConstraints = false
     self.addSubview(headerTextField)
     paragraphTextView.translatesAutoresizingMaskIntoConstraints = false
     self.addSubview(paragraphTextView)
     
-    // Creating and activating the constraints
+    // Added these two lines to get a reference to the UI items centerXAnchor constraints
+    headerCenterXAnchor = headerTextField.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+    paragraphCenterXAnchor = paragraphTextView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+    
+    // Replaced the old constraints with the variable names here to be activated when setup is called
     NSLayoutConstraint.activate([
-      headerTextField.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+      headerCenterXAnchor,
       headerTextField.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-      paragraphTextView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+      paragraphCenterXAnchor,
       paragraphTextView.topAnchor.constraint(equalTo: headerTextField.bottomAnchor, constant: 20),
       paragraphTextView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: (2/3))
     ])
+  }
+  
+  func updateViewCenterXAnchor(with constant: CGFloat) {
+    headerCenterXAnchor = self.headerTextField.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: constant)
+    paragraphCenterXAnchor = self.paragraphTextView.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: constant)
   }
   
 }
